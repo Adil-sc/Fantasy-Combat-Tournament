@@ -6,6 +6,15 @@
 #define PROJECT4_TOURNAMENT_H
 
 #include "Character.h"
+#include <iostream>
+#include "Menu.h"
+#include "Barbarian.h"
+#include <string>
+
+
+using std::cin;
+using std::cout;
+using std::string;
 
 class Tournament {
 private:
@@ -15,9 +24,10 @@ private:
         CharacterLinkedList *prev;
         Character *fighter;
 
-        CharacterLinkedList(Character *fighter, CharacterLinkedList *next){
+        CharacterLinkedList(Character *fighter,string characterName, CharacterLinkedList *next){
             this->fighter = fighter;
             this->next = next;
+            fighter->setEnemyType(characterName);
         }
 
 
@@ -26,6 +36,12 @@ private:
     CharacterLinkedList *head;
     CharacterLinkedList *tail;
 
+    CharacterLinkedList *player1 = nullptr;
+    CharacterLinkedList *player2 = nullptr;
+    CharacterLinkedList *loserr = nullptr;
+
+
+
 public:
 
     Tournament(){head = nullptr; tail = nullptr;}
@@ -33,6 +49,12 @@ public:
     bool isEmpty();
     void addBack(int val);
     int getFront();
+    void addBack();
+    void gameStart();
+    void addPlayers(CharacterLinkedList *&userPlayer);
+    Character *characterSelectionMenu();
+    void printCharacters();
+
 
 };
 

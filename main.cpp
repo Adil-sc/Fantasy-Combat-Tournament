@@ -1,7 +1,11 @@
 #include <iostream>
+#include "Tournament.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    Tournament myTourney;
+
+    myTourney.gameStart();
 
 
 

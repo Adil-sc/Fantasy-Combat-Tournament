@@ -40,9 +40,9 @@ void Tournament::addPlayers(Tournament::CharacterLinkedList *&userPlayer) {
 //Configuring the Characters LinkedList
     if(isEmpty()){
 
-        player1 = userPlayer;
-        player1->next = player1;
-        player1->prev = player1;
+        head = userPlayer;
+        head->next = head;
+        head->prev = head;
 
 
     }

@@ -23,12 +23,14 @@ private:
         CharacterLinkedList *next;
         CharacterLinkedList *prev;
         Character *fighter;
+        int numberOfFighers;
 
-        CharacterLinkedList(Character *fighter,string characterName,CharacterLinkedList *prev, CharacterLinkedList *next){
+        CharacterLinkedList(Character *fighter,string characterName,CharacterLinkedList *prev, CharacterLinkedList *next,int numberOfFighters){
             this->fighter = fighter;
             this->next = next;
             this->prev = prev;
             fighter->setEnemyType(characterName);
+            this->numberOfFighers = numberOfFighters;
         }
 
 
@@ -47,14 +49,14 @@ public:
 
     Tournament(){head = nullptr; tail = nullptr;}
 
-    bool isEmpty();
+    bool isEmpty(CharacterLinkedList *head);
     void addBack(int val);
     int getFront();
     void addBack();
     void gameStart();
     void addPlayers(CharacterLinkedList *&userPlayer);
     Character *characterSelectionMenu();
-    void printCharacters();
+    void printCharacters(CharacterLinkedList *head);
 
 
 };

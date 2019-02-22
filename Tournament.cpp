@@ -5,7 +5,7 @@
 #include "Tournament.h"
 
 
-bool Tournament::isEmpty() {
+bool Tournament::isEmpty(CharacterLinkedList *head) {
 
     if(head == nullptr){
         return true;
@@ -43,21 +43,28 @@ void Tournament::addPlayers(Tournament::CharacterLinkedList *&userPlayer) {
        // userPlayer = new CharacterLinkedList(characterChoice,characterName,userPlayer);
 
         //Configuring the Characters LinkedList
-        if(isEmpty()){
+        if(isEmpty(userPlayer)){
 
-            head = new CharacterLinkedList(characterChoice,characterName,head,head);
-            head->next = head;
-            head->prev = head;
+            userPlayer = new CharacterLinkedList(characterChoice,characterName,userPlayer,userPlayer,numberOfFighters);
+            userPlayer->next = userPlayer;
+            userPlayer->prev = userPlayer;
 
 //This bit didnt really work. Only seems to be adding one to the node.
         } else{
 
-            tail = head->prev;
-            CharacterLinkedList *n = new CharacterLinkedList(characterChoice,characterName,tail,head);
+            tail = userPlayer->prev;
+            CharacterLinkedList *n = new CharacterLinkedList(characterChoice,characterName,tail,userPlayer,numberOfFighters);
             tail->next = n;
-            head->prev = n;
+            userPlayer->prev = n;
 
         }
+
+
+
+
+
+
+
 
 
     }
@@ -98,10 +105,10 @@ Character* Tournament::characterSelectionMenu() {
 }
 
 
-void Tournament::printCharacters() {
+void Tournament::printCharacters(CharacterLinkedList *head) {
 
    CharacterLinkedList *temp = head;
-    if(!isEmpty()) {
+    if(!isEmpty(temp)) {
 
         cout << "-------------------" << std::endl;
         do {
@@ -122,11 +129,48 @@ void Tournament::printCharacters() {
 
 
 void Tournament::gameStart() {
-
+    bool gameOver = false;
     addPlayers(player1);
-    printCharacters();
+    addPlayers(player2);
+    printCharacters(player1);
+    printCharacters(player2);
 
 
+    CharacterLinkedList *temp1 = player1;
+    CharacterLinkedList *temp2 = player2;
+
+    while (gameOver == false){
+        if(temp1->fighter->getStrength()<= 0 || gameOver == true){
+            temp1->numberOfFighers = temp1->numberOfFighers-1;
+            if(temp1->numberOfFighers <=0){
+                gameOver = true;
+            }else{
+            temp1 = temp1->next;
+         //   cout<<temp1->numberOfFighers<<"********";
+            }
+
+        }else{
+            temp2->fighter->defence(temp1->fighter->attack());
+        }
+
+        if(temp2->fighter->getStrength()<=0 || gameOver == true){
+            temp2->numberOfFighers = temp2->numberOfFighers-1;
+            if(temp2->numberOfFighers <=0){
+                gameOver = true;
+            }else{
+
+            temp2 = temp2->next;
+          //  cout<<temp2->numberOfFighers<<"$$$$$$$";
+            }
+        }else{
+            temp1->fighter->defence(temp2->fighter->attack());
+
+        }
+
+
+
+
+    }
 
 
 }

@@ -15,7 +15,14 @@ bool Tournament::isEmpty() {
 
 }
 
+void Tournament::addBack() {
 
+
+
+
+
+
+}
 
 void Tournament::addPlayers(Tournament::CharacterLinkedList *&userPlayer) {
 
@@ -33,19 +40,29 @@ void Tournament::addPlayers(Tournament::CharacterLinkedList *&userPlayer) {
         cin.ignore();
         getline(cin,characterName);
 
-        userPlayer = new CharacterLinkedList(characterChoice,characterName,userPlayer);
+       // userPlayer = new CharacterLinkedList(characterChoice,characterName,userPlayer);
+
+        //Configuring the Characters LinkedList
+        if(isEmpty()){
+
+            head = new CharacterLinkedList(characterChoice,characterName,head,head);
+            head->next = head;
+            head->prev = head;
+
+//This bit didnt really work. Only seems to be adding one to the node.
+        } else{
+
+            tail = head->prev;
+            CharacterLinkedList *n = new CharacterLinkedList(characterChoice,characterName,tail,head);
+            tail->next = n;
+            head->prev = n;
+
+        }
+
 
     }
 
-//Configuring the Characters LinkedList
-    if(isEmpty()){
 
-        head = userPlayer;
-        head->next = head;
-        head->prev = head;
-
-
-    }
 
 
 
@@ -53,6 +70,7 @@ void Tournament::addPlayers(Tournament::CharacterLinkedList *&userPlayer) {
 
 //Returns a character type depending on what the player has selected
 Character* Tournament::characterSelectionMenu() {
+    Character *charSelect;
     int menuChoice = 0;
     vector<string> myMenu = {"Vampire(barbarian for now)", "Barbarian", "Blue Men", "Medusa", "Harry Potter"};
     Menu characterMenu("", myMenu);
@@ -60,7 +78,7 @@ Character* Tournament::characterSelectionMenu() {
     menuChoice = characterMenu.displayMenu();
     switch (menuChoice) {
         case 1:
-            return new Barbarian;
+            charSelect = new Barbarian;
             break;
      /*   case 2:
             player1 = new Barbarian;
@@ -76,7 +94,7 @@ Character* Tournament::characterSelectionMenu() {
             break;
     */
       }
-
+    return charSelect;
 }
 
 

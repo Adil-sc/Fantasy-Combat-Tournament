@@ -24,9 +24,10 @@ private:
         CharacterLinkedList *prev;
         Character *fighter;
 
-        CharacterLinkedList(Character *fighter,string characterName, CharacterLinkedList *next){
+        CharacterLinkedList(Character *fighter,string characterName,CharacterLinkedList *prev, CharacterLinkedList *next){
             this->fighter = fighter;
             this->next = next;
+            this->prev = prev;
             fighter->setEnemyType(characterName);
         }
 

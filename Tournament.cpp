@@ -22,7 +22,7 @@ void Tournament::addPlayers(CharacterLinkedList *&userPlayer, CharacterLinkedLis
     Character *characterChoice;
     string characterName;
 
-   // cout << "Player 1, how many fighters would you like?" << std::endl;
+    // cout << "Player 1, how many fighters would you like?" << std::endl;
     cin >> numberOfFighters;
 
     for (int i = 0; i < numberOfFighters; i++) {
@@ -149,7 +149,7 @@ void Tournament::removeFront(CharacterLinkedList *&userPlayer, CharacterLinkedLi
 
 }
 
-void Tournament::moveToLosers(Tournament::CharacterLinkedList *&userPlayer,CharacterLinkedList *playerToAddToLosers, Tournament::CharacterLinkedList *&tail) {
+void Tournament::moveToLosers(Tournament::CharacterLinkedList *&userPlayer, CharacterLinkedList *playerToAddToLosers, Tournament::CharacterLinkedList *&tail) {
 
     if (isEmpty(userPlayer)) {
 
@@ -160,13 +160,11 @@ void Tournament::moveToLosers(Tournament::CharacterLinkedList *&userPlayer,Chara
     } else {
 
         tail = userPlayer->prev;
-        CharacterLinkedList *n =  new CharacterLinkedList(playerToAddToLosers->fighter, playerToAddToLosers->fighter->getEnemyType(), tail, userPlayer, 0);
+        CharacterLinkedList *n = new CharacterLinkedList(playerToAddToLosers->fighter, playerToAddToLosers->fighter->getEnemyType(), tail, userPlayer, 0);
         tail->next = n;
         userPlayer->prev = n;
 
     }
-
-
 
 
 }
@@ -198,99 +196,87 @@ void Tournament::moveToBack(Tournament::CharacterLinkedList *&userPlayer, Tourna
 
 void Tournament::gameStart() {
     bool gameOver = false;
-
+    int p1Counter = 0;
+    int p2Counter = 0;
 
 //    printCharacters(player1);
- //   printCharacters(player2);
+    //   printCharacters(player2);
     // cout<<"Removing from player 1 linked list"<<std::endl;
     // removeFront(player1,player1Tail);
     // printCharacters(player1);
 
 //    cout << "Move front to back" << std::endl;
- //   moveToBack(player1, player1Tail);
-  //  printCharacters(player1);
+    //   moveToBack(player1, player1Tail);
+    //  printCharacters(player1);
 
-    cout<<"Player 1, how many characters do you want?"<<std::endl;
+    cout << "Player 1, how many characters do you want?" << std::endl;
     addPlayers(player1, player1Tail);
 
-    cout<<"Player 2, how many characters do you want?"<<std::endl;
+    cout << "Player 2, how many characters do you want?" << std::endl;
     addPlayers(player2, player2Tail);
 
-    CharacterLinkedList *temp1 = player1;
+ CharacterLinkedList *temp1 = player1;
     CharacterLinkedList *temp2 = player2;
+ /*       cout<<"Player1 contains"<<std::endl;
+    printCharacters(player1);
+      cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
+      cout<<"Move player 1 value to losers"<<std::endl;
+      moveToLosers(losers, player1, loserTail);
+      cout<<"Player 1 list still contains: "<<std::endl;
+      printCharacters(player1);
+      cout<<"And losers list now contains"<<std::endl;
+      printCharacters(losers);
+      cout<<"Move player 1 value to back"<<std::endl;
+      moveToBack(player1,player1Tail);
+      printCharacters(player1);
+      cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
+      cout<<"rempve player2 value from front"<<std::endl;
+       removeFront(player1,player1Tail);
+      printCharacters(player1);
+*/
 
     //Main comabt loop
     while (gameOver == false) {
-        //If player 1s strength is 0 or the game is over, subtract fighter count from roster,
-        if (temp1->fighter->getStrength() <= 0 || gameOver == true) {
-            temp1->numberOfFighers = temp1->numberOfFighers - 1;
+        cout<<isEmpty(player1)<<"*";
+        while (!isEmpty(player1) && !isEmpty(player2)){
 
+            if(player1->fighter->getStrength()<=0){
+                cout << "debug:1" << std::endl;
+                //If player 1 is defeated
 
-            //Move player 1 figher to losers list
-            moveToLosers(losers,temp1,player1Tail);
+                moveToLosers(losers,player1,loserTail);
+                removeFront(player1,player1);
+                moveToBack(player2,player2Tail);
+                cout<<isEmpty(player1)<<"***a";
+            }else if(player1->fighter->getStrength()>0 && !isEmpty(player2)){
+                cout << "debug:2" << std::endl;
+                player2->fighter->defence(player1->fighter->attack());
 
-
-            if (temp1->numberOfFighers <= 0) {
-                gameOver = true;
-            } else {
-
-
-
-                //If player 1 still has fighters, select the next fighter in the roster
-                temp1 = temp1->next;
-
-                //Restore health for players 2 fighter before the next fighert in the roster is selected
-                int regenHealth = rand()%10 + 1;
-                temp2->fighter->setStrength(temp2->fighter->getStrength()+regenHealth);
-            //    cout<<temp2->fighter->getEnemyType()<<" goes to the back of the roster and regenerates "<<regenHealth<<" strength points"<<std::endl;
-
-                // Pick the next fighter in the roster for player 2s team
-                temp2 = temp2->next;
-
-                //   cout<<temp1->numberOfFighers<<"********";
             }
 
-        } else {
-            temp2->fighter->defence(temp1->fighter->attack());
-        }
 
-        if (temp2->fighter->getStrength() <= 0 || gameOver == true) {
-            temp2->numberOfFighers = temp2->numberOfFighers - 1;
+            if(player2->fighter->getStrength()<=0){
+                cout << "debug:3" << std::endl;
+                //If player 2 is defeated
 
-            //Move player 2 figher to losers list
-            moveToLosers(losers,temp2,loserTail);
+                moveToLosers(losers,player2,loserTail);
+                removeFront(player2,player1);
+                moveToBack(player1,player1Tail);
+                cout<<isEmpty(player1)<<"***b";
+            }else if(player2->fighter->getStrength()>0 && !isEmpty(player1)){
+                cout << "debug:4" << std::endl;
+                player1->fighter->defence(player2->fighter->attack());
 
-            if (temp2->numberOfFighers <= 0) {
-                gameOver = true;
-            } else {
-
-
-
-
-                //If player 2 still has fighters, select the next fighter in the roster
-                temp2 = temp2->next;
-
-                //Restore health for players 2 fighter before the next fighert in the roster is selected
-                int regenHealth = rand()%10 + 1;
-                temp1->fighter->setStrength(temp1->fighter->getStrength()+regenHealth);
-              //  cout<<temp1->fighter->getEnemyType()<<" goes to the back of the roster and regenerates "<<regenHealth<<" strength points"<<std::endl;
-
-                //Pick the next fighter in the roster for player 1s team
-                temp1 = temp1->next;
-
-                //  cout<<temp2->numberOfFighers<<"$$$$$$$";
             }
-        } else {
-            temp1->fighter->defence(temp2->fighter->attack());
+
 
         }
-
-
+        gameOver = true;
     }
 
-    cout<<"Losers list"<<std::endl;
-    printCharacters(temp1);
-    cout<<"*****"<<std::endl;
+    cout << "Losers list" << std::endl;
+    //printCharacters(temp1);
+    //cout << "*****" << std::endl;
     printCharacters(losers);
 
 

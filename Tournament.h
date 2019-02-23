@@ -36,25 +36,29 @@ private:
 
     };
 
-    CharacterLinkedList *head;
-    CharacterLinkedList *tail;
+  //  CharacterLinkedList *head;
+ //   CharacterLinkedList *tail;
+    CharacterLinkedList *player1Tail;
+    CharacterLinkedList *player2Tail;
+    CharacterLinkedList *loserTail;
 
     CharacterLinkedList *player1 = nullptr;
     CharacterLinkedList *player2 = nullptr;
-    CharacterLinkedList *loserr = nullptr;
+    CharacterLinkedList *losers = nullptr;
 
 
 
 public:
 
-    Tournament(){head = nullptr; tail = nullptr;}
+    Tournament(){}
 
     bool isEmpty(CharacterLinkedList *head);
-    void addBack(int val);
     int getFront();
-    void addBack();
+    void removeFront(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
+    void moveToBack(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
+    void moveToLosers(CharacterLinkedList *&userPlayer,CharacterLinkedList *playerToAddToLosers ,CharacterLinkedList *&tail);
     void gameStart();
-    void addPlayers(CharacterLinkedList *&userPlayer);
+    void addPlayers(CharacterLinkedList *&userPlayer,CharacterLinkedList *&tail);
     Character *characterSelectionMenu();
     void printCharacters(CharacterLinkedList *head);
 

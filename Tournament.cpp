@@ -13,14 +13,14 @@ Tournament::~Tournament() {
 void Tournament::cleanUp() {
 
 
-    while (!isEmpty(losers)){
-        removeFront(losers,loserTail);
+    while (!isEmpty(losers)) {
+        removeFront(losers, loserTail);
     }
-    while (!isEmpty(player1)){
-        removeFront(player1,player1Tail);
+    while (!isEmpty(player1)) {
+        removeFront(player1, player1Tail);
     }
-    while (!isEmpty(player2)){
-        removeFront(player2,player2Tail);
+    while (!isEmpty(player2)) {
+        removeFront(player2, player2Tail);
     }
 
 
@@ -59,14 +59,14 @@ void Tournament::addPlayers(CharacterLinkedList *&userPlayer, CharacterLinkedLis
         //Configuring the Characters LinkedList
         if (isEmpty(userPlayer)) {
 
-            userPlayer = new CharacterLinkedList(characterChoice, characterName+characterType, userPlayer, userPlayer, numberOfFighters);
+            userPlayer = new CharacterLinkedList(characterChoice, characterName + characterType, userPlayer, userPlayer, numberOfFighters);
             userPlayer->next = userPlayer;
             userPlayer->prev = userPlayer;
 
         } else {
 
             tail = userPlayer->prev;
-            CharacterLinkedList *n = new CharacterLinkedList(characterChoice, characterName+characterType, tail, userPlayer, numberOfFighters);
+            CharacterLinkedList *n = new CharacterLinkedList(characterChoice, characterName + characterType, tail, userPlayer, numberOfFighters);
             tail->next = n;
             userPlayer->prev = n;
 
@@ -91,20 +91,20 @@ Character *Tournament::characterSelectionMenu() {
             charSelect = new Barbarian;
             characterType = "[Barbarian]";
             break;
-               case 2:
-                   charSelect = new Vampire;
+        case 2:
+            charSelect = new Vampire;
             characterType = "[Vampire]";
             break;
-               case 3:
-                   charSelect = new BlueMen;
+        case 3:
+            charSelect = new BlueMen;
             characterType = "[Blue Men]";
             break;
-               case 4:
-                   charSelect = new Medusa;
+        case 4:
+            charSelect = new Medusa;
             characterType = "[Medusa]";
             break;
-               case 5:
-                   charSelect = new HarryPotter;
+        case 5:
+            charSelect = new HarryPotter;
             characterType = "[Harry Potter]";
             break;
 
@@ -187,20 +187,20 @@ void Tournament::moveToLosers(Tournament::CharacterLinkedList *&userPlayer, Char
     } else {
 
         //Stack:
-       tail = userPlayer->next;
+        tail = userPlayer->next;
         CharacterLinkedList *n = new CharacterLinkedList(playerToAddToLosers->fighter, playerToAddToLosers->fighter->getEnemyType(), tail, userPlayer, 0);
         userPlayer->prev = n;
         userPlayer = userPlayer->prev;
 
-       tail->next = userPlayer;
+        tail->next = userPlayer;
 
-       //Queue:
+        //Queue:
 
-   /*    tail = userPlayer->prev;
-        CharacterLinkedList *n = new CharacterLinkedList(playerToAddToLosers->fighter, playerToAddToLosers->fighter->getEnemyType(), tail, userPlayer, 0);
-        tail->next = n;
-      userPlayer->prev = n;
-        */
+        /*    tail = userPlayer->prev;
+             CharacterLinkedList *n = new CharacterLinkedList(playerToAddToLosers->fighter, playerToAddToLosers->fighter->getEnemyType(), tail, userPlayer, 0);
+             tail->next = n;
+           userPlayer->prev = n;
+             */
     }
 
 
@@ -235,25 +235,24 @@ void Tournament::moveToBack(Tournament::CharacterLinkedList *&userPlayer, Tourna
 void Tournament::menu(bool &quit) {
 
     int menuuChoice = 0;
-    vector <string> myMenuOptions = {"Play","Quit"};
-    Menu myMenu("",myMenuOptions);
+    vector<string> myMenuOptions = {"Play", "Quit"};
+    Menu myMenu("", myMenuOptions);
     menuuChoice = myMenu.displayMenu();
 
-    switch (menuuChoice){
+    switch (menuuChoice) {
 
         case 1:
             gameStart();
             break;
         case 2:
-        cleanUp();
+            cleanUp();
             quit = true;
-          break;
+            break;
 
     }
 
 
 }
-
 
 
 void Tournament::gameStart() {
@@ -277,62 +276,64 @@ void Tournament::gameStart() {
     cout << "Player 2, how many characters do you want?" << std::endl;
     addPlayers(player2, player2Tail);
 
- /*       cout<<"Player1 contains"<<std::endl;
-    printCharacters(player1);
-      cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
-      cout<<"Move player 1 value to losers"<<std::endl;
-      moveToLosers(losers, player1, loserTail);
-      cout<<"Player 1 list still contains: "<<std::endl;
-      printCharacters(player1);
-      cout<<"And losers list now contains"<<std::endl;
-      printCharacters(losers);
-      cout<<"Move player 1 value to back"<<std::endl;
-      moveToBack(player1,player1Tail);
-      printCharacters(player1);
-      cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
-      cout<<"rempve player2 value from front"<<std::endl;
-       removeFront(player1,player1Tail);
-      printCharacters(player1);
-*/
+    /*       cout<<"Player1 contains"<<std::endl;
+       printCharacters(player1);
+         cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
+         cout<<"Move player 1 value to losers"<<std::endl;
+         moveToLosers(losers, player1, loserTail);
+         cout<<"Player 1 list still contains: "<<std::endl;
+         printCharacters(player1);
+         cout<<"And losers list now contains"<<std::endl;
+         printCharacters(losers);
+         cout<<"Move player 1 value to back"<<std::endl;
+         moveToBack(player1,player1Tail);
+         printCharacters(player1);
+         cout<<player1->fighter->getEnemyType()<<" Fighter<<std::endl;";
+         cout<<"rempve player2 value from front"<<std::endl;
+          removeFront(player1,player1Tail);
+         printCharacters(player1);
+   */
 
     //Main comabt loop
 
     while (gameOver == false) {
-       // cout<<isEmpty(player1)<<"*";
-        while (!isEmpty(player1) && !isEmpty(player2)){
+        // cout<<isEmpty(player1)<<"*";
+        while (!isEmpty(player1) && !isEmpty(player2)) {
 
-            if(player1->fighter->getStrength()<=0){
+            if (player1->fighter->getStrength() <= 0) {
                 cout << "debug:1" << std::endl;
-                cout<<"Player 1: "<<player1->fighter->getEnemyType()<<" vs "<<"Player 2: "<<player2->fighter->getEnemyType()<<" - "<<player2->fighter->getEnemyType()<<" Wins!"<<std::endl;
+                cout << "Player 1: " << player1->fighter->getEnemyType() << " vs " << "Player 2: " << player2->fighter->getEnemyType() << " - " << player2->fighter->getEnemyType() << " Wins!"
+                     << std::endl;
                 //If player 1 is defeated
                 p2Score++;
-                moveToLosers(losers,player1,loserTail);
-                removeFront(player1,player1);
+                moveToLosers(losers, player1, loserTail);
+                removeFront(player1, player1);
                 //Health regen
                 int regenHealth = rand() % 10 + 1;
                 player2->fighter->setStrength(player2->fighter->getStrength() + regenHealth);
-                moveToBack(player2,player2Tail);
-               // cout<<isEmpty(player1)<<"***a";
-            }else if(player1->fighter->getStrength()>0 && !isEmpty(player2)){
+                moveToBack(player2, player2Tail);
+                // cout<<isEmpty(player1)<<"***a";
+            } else if (player1->fighter->getStrength() > 0 && !isEmpty(player2)) {
                 cout << "debug:2" << std::endl;
                 player2->fighter->defence(player1->fighter->attack());
 
             }
 
 
-            if(player2->fighter->getStrength()<=0){
+            if (player2->fighter->getStrength() <= 0) {
                 cout << "debug:3" << std::endl;
-                cout<<"Player 1: "<<player1->fighter->getEnemyType()<<" vs "<<"Player 2: "<<player2->fighter->getEnemyType()<<" - "<<player1->fighter->getEnemyType()<<" Wins!"<<std::endl;
+                cout << "Player 1: " << player1->fighter->getEnemyType() << " vs " << "Player 2: " << player2->fighter->getEnemyType() << " - " << player1->fighter->getEnemyType() << " Wins!"
+                     << std::endl;
                 //If player 2 is defeated
                 p1Score++;
-                moveToLosers(losers,player2,loserTail);
-                removeFront(player2,player1);
+                moveToLosers(losers, player2, loserTail);
+                removeFront(player2, player1);
                 //Health regen
                 int regenHealth = rand() % 10 + 1;
                 player1->fighter->setStrength(player1->fighter->getStrength() + regenHealth);
-                moveToBack(player1,player1Tail);
-               // cout<<isEmpty(player1)<<"***b";
-            }else if(player2->fighter->getStrength()>0 && !isEmpty(player1)){
+                moveToBack(player1, player1Tail);
+                // cout<<isEmpty(player1)<<"***b";
+            } else if (player2->fighter->getStrength() > 0 && !isEmpty(player1)) {
                 cout << "debug:4" << std::endl;
                 player1->fighter->defence(player2->fighter->attack());
 
@@ -344,36 +345,47 @@ void Tournament::gameStart() {
 
     }
 
-    cout<<"Score for Player 1: "<<p1Score<<std::endl;
-    cout<<"Score for Player 2: "<<p2Score<<std::endl;
+    cout<<"+-----------------------+"<<std::endl;
+    cout<<"|      FINAL SCORES     |"<<std::endl;
+    cout<<"+-----------------------+"<<std::endl;
+    cout << "Score for Player 1: " << p1Score << std::endl;
+    cout << "Score for Player 2: " << p2Score << std::endl;
 
-    if(p1Score>p2Score) {
-        cout << "Player 1 wins" << std::endl;
-    }else if(p2Score>p1Score){
-        cout<<"Player 2 wins"<<std::endl;
-    }else{
-        cout<<"Its a tie!"<<std::endl;
+    if (p1Score > p2Score) {
+      cout<<"+------------------+"<<std::endl;
+      cout<<"|   Player 1 wins  |"<<std::endl;
+      cout<<"+------------------+"<<std::endl;
+
+    } else if (p2Score > p1Score) {
+        cout<<"+------------------+"<<std::endl;
+        cout<<"|   Player 2 wins  |"<<std::endl;
+        cout<<"+------------------+"<<std::endl;
+
+    } else {
+        cout<<"+------------------+"<<std::endl;
+        cout<<"|     Its a tie    |"<<std::endl;
+        cout<<"+------------------+"<<std::endl;
+
     }
 
 
     int menuChoice = 0;
-    vector <string> myMenuOptions = {"Back to main menu to play again or quit","View losers"};
-    Menu myMenu("",myMenuOptions);
+    vector<string> myMenuOptions = {"Back to main menu to play again or quit", "View losers"};
+    Menu myMenu("", myMenuOptions);
     menuChoice = myMenu.displayMenu();
     switch (menuChoice) {
 
-        case 1:
-        {
+        case 1: {
 
             gameOver = false;
             p1Score = 0;
             p2Score = 0;
-             cleanUp();
+            cleanUp();
 
         }
             break;
         case 2:
-            cout<<"****LOSERS****"<<std::endl;
+            cout << "****LOSERS****" << std::endl;
             printCharacters(losers);
             gameOver = false;
             p1Score = 0;
@@ -382,9 +394,6 @@ void Tournament::gameStart() {
             break;
 
     }
-
-
-
 
 
 }

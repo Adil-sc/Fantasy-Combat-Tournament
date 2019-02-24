@@ -29,7 +29,7 @@ int Barbarian::attack() {
 
     totalAttackPower = firstDieAttack + secondDieAttack;
     //Output the value of each die roll and the total attack power (which is the sum of all die rolls)
-    cout << this->enemyType << " attacks! rolls a " << firstDieAttack << " and " << secondDieAttack << " for a total attack power of " << totalAttackPower << std::endl;
+  //  cout << this->enemyType << " attacks! rolls a " << firstDieAttack << " and " << secondDieAttack << " for a total attack power of " << totalAttackPower << std::endl;
 
     return totalAttackPower;
 
@@ -42,7 +42,7 @@ int Barbarian::attack() {
 void Barbarian::defence(int attackersTotalAttackPower) {
 
     //Outputs the basic stats of the defender including the current Armor and Strength points
-    cout << this->getEnemyType() << "Stats:" << "[Armor: " << this->getAmor() << ", Strength points: " << this->getStrength() << "]" << std::endl;
+  //  cout << this->getEnemyType() << "Stats:" << "[Armor: " << this->getAmor() << ", Strength points: " << this->getStrength() << "]" << std::endl;
 
     //Calculates a random value for each defenders die
     firstDieDefence = rand() % 6 + 1;
@@ -54,11 +54,11 @@ void Barbarian::defence(int attackersTotalAttackPower) {
     damage = attackersTotalAttackPower - totalDefencePower - armor;
 
     //Outputs the value for each die roll and the total defence power (which is the sum of all die rolls)
-    cout << this->getEnemyType() << " defends, rolls a " << firstDieDefence << " and " << secondDieDefence << ". For a total defensive power of " << totalDefencePower << std::endl;
+ //   cout << this->getEnemyType() << " defends, rolls a " << firstDieDefence << " and " << secondDieDefence << ". For a total defensive power of " << totalDefencePower << std::endl;
 
     //If the damage <= 0, we say that the attack was too weak to inflict any damage
     if (damage <= 0) {
-        cout << "The attack was ineffective! " << this->getEnemyType() << " is not phased." << std::endl;
+      //  cout << "The attack was ineffective! " << this->getEnemyType() << " is not phased." << std::endl;
     } else {
 
         //If the attack was >=0, we subtract the damage from the characters current Strength points
@@ -67,12 +67,12 @@ void Barbarian::defence(int attackersTotalAttackPower) {
         //If the current Strength is <= 0, we say the character has been defeated
         if (this->getStrength() <= 0) {
 
-            cout << this->getEnemyType() << " took " << damage << " damage, it has been defeated!" << std::endl;
+   //         cout << this->getEnemyType() << " took " << damage << " damage, it has been defeated!" << std::endl;
 
         //Else, we output how much damage the character took, and what their Strength points are after
         } else {
-            cout << this->getEnemyType() << " took " << damage << " damage, its strength has been reduced to "
-                 << this->getStrength() << std::endl;
+   //         cout << this->getEnemyType() << " took " << damage << " damage, its strength has been reduced to "
+    //             << this->getStrength() << std::endl;
         }
 
     }

@@ -6,6 +6,7 @@
 
 Tournament::~Tournament() {
 
+    cleanUp();
 
 }
 
@@ -253,6 +254,8 @@ void Tournament::menu(bool &quit) {
 
 }
 
+
+
 void Tournament::gameStart() {
     bool gameOver = false;
     int p1Score = 0;
@@ -295,11 +298,12 @@ void Tournament::gameStart() {
     //Main comabt loop
 
     while (gameOver == false) {
-        cout<<isEmpty(player1)<<"*";
+       // cout<<isEmpty(player1)<<"*";
         while (!isEmpty(player1) && !isEmpty(player2)){
 
             if(player1->fighter->getStrength()<=0){
                 cout << "debug:1" << std::endl;
+                cout<<"Player 1: "<<player1->fighter->getEnemyType()<<" vs "<<"Player 2: "<<player2->fighter->getEnemyType()<<" - "<<player2->fighter->getEnemyType()<<" Wins!"<<std::endl;
                 //If player 1 is defeated
                 p2Score++;
                 moveToLosers(losers,player1,loserTail);
@@ -308,7 +312,7 @@ void Tournament::gameStart() {
                 int regenHealth = rand() % 10 + 1;
                 player2->fighter->setStrength(player2->fighter->getStrength() + regenHealth);
                 moveToBack(player2,player2Tail);
-                cout<<isEmpty(player1)<<"***a";
+               // cout<<isEmpty(player1)<<"***a";
             }else if(player1->fighter->getStrength()>0 && !isEmpty(player2)){
                 cout << "debug:2" << std::endl;
                 player2->fighter->defence(player1->fighter->attack());
@@ -318,6 +322,7 @@ void Tournament::gameStart() {
 
             if(player2->fighter->getStrength()<=0){
                 cout << "debug:3" << std::endl;
+                cout<<"Player 1: "<<player1->fighter->getEnemyType()<<" vs "<<"Player 2: "<<player2->fighter->getEnemyType()<<" - "<<player1->fighter->getEnemyType()<<" Wins!"<<std::endl;
                 //If player 2 is defeated
                 p1Score++;
                 moveToLosers(losers,player2,loserTail);
@@ -326,7 +331,7 @@ void Tournament::gameStart() {
                 int regenHealth = rand() % 10 + 1;
                 player1->fighter->setStrength(player1->fighter->getStrength() + regenHealth);
                 moveToBack(player1,player1Tail);
-                cout<<isEmpty(player1)<<"***b";
+               // cout<<isEmpty(player1)<<"***b";
             }else if(player2->fighter->getStrength()>0 && !isEmpty(player1)){
                 cout << "debug:4" << std::endl;
                 player1->fighter->defence(player2->fighter->attack());
@@ -338,6 +343,9 @@ void Tournament::gameStart() {
         gameOver = true;
 
     }
+
+    cout<<"Score for Player 1: "<<p1Score<<std::endl;
+    cout<<"Score for Player 2: "<<p2Score<<std::endl;
 
     if(p1Score>p2Score) {
         cout << "Player 1 wins" << std::endl;

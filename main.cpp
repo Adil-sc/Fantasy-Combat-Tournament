@@ -3,13 +3,15 @@
 
 int main() {
 
+    bool quit = false;
+
     Tournament myTourney;
 
-    myTourney.gameStart();
 
-
-
-
+            while(!quit){
+                myTourney.menu(quit);
+            }
+cout<<"asdasd";
 
     return 0;
 }

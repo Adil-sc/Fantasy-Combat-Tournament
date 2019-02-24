@@ -9,15 +9,24 @@
 #include <iostream>
 #include "Menu.h"
 #include "Barbarian.h"
+#include "Vampire.h"
+#include "BlueMen.h"
+#include "HarryPotter.h"
+#include "Medusa.h"
 #include <string>
+#include <vector>
 
 
 using std::cin;
 using std::cout;
 using std::string;
+using std::vector;
 
 class Tournament {
 private:
+
+    string characterType= "";
+
     struct CharacterLinkedList{
 
         CharacterLinkedList *next;
@@ -42,18 +51,32 @@ private:
     CharacterLinkedList *player2Tail;
     CharacterLinkedList *loserTail;
 
-    CharacterLinkedList *player1 = nullptr;
-    CharacterLinkedList *player2 = nullptr;
-    CharacterLinkedList *losers = nullptr;
+    CharacterLinkedList *player1;
+    CharacterLinkedList *player2;
+    CharacterLinkedList *losers;
 
 
 
 public:
 
-    Tournament(){}
+    Tournament(){
+
+        player1Tail = nullptr;
+        player2Tail = nullptr;
+      loserTail = nullptr;
+        player1 = nullptr;
+       player2 = nullptr;
+     losers = nullptr;
+
+
+
+    }
+    ~Tournament();
 
     bool isEmpty(CharacterLinkedList *head);
     int getFront();
+    void cleanUp();
+    void menu(bool &quit);
     void removeFront(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
     void moveToBack(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
     void moveToLosers(CharacterLinkedList *&userPlayer,CharacterLinkedList *playerToAddToLosers ,CharacterLinkedList *&tail);
@@ -61,6 +84,7 @@ public:
     void addPlayers(CharacterLinkedList *&userPlayer,CharacterLinkedList *&tail);
     Character *characterSelectionMenu();
     void printCharacters(CharacterLinkedList *head);
+
 
 
 };

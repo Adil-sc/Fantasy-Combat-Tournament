@@ -12,6 +12,7 @@
 #include "Vampire.h"
 #include "BlueMen.h"
 #include "HarryPotter.h"
+#include "inputValidation.h"
 #include "Medusa.h"
 #include <string>
 #include <vector>

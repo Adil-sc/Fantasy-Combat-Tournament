@@ -4,6 +4,8 @@
 
 #include "Tournament.h"
 
+
+
 Tournament::~Tournament() {
 
     cleanUp();
@@ -46,6 +48,8 @@ void Tournament::addPlayers(CharacterLinkedList *&userPlayer, CharacterLinkedLis
 
     // cout << "Player 1, how many fighters would you like?" << std::endl;
     cin >> numberOfFighters;
+    isValidIntRange(numberOfFighters,1,6,"Please enter a value between 1-6");
+
 
     for (int i = 0; i < numberOfFighters; i++) {
 
@@ -270,10 +274,10 @@ void Tournament::gameStart() {
     //   moveToBack(player1, player1Tail);
     //  printCharacters(player1);
 
-    cout << "Player 1, how many characters do you want?" << std::endl;
+    cout << "Player 1, how many characters do you want? Please enter a value between 1-6" << std::endl;
     addPlayers(player1, player1Tail);
 
-    cout << "Player 2, how many characters do you want?" << std::endl;
+    cout << "Player 2, how many characters do you want? Please enter a value between 1-6" << std::endl;
     addPlayers(player2, player2Tail);
 
     /*       cout<<"Player1 contains"<<std::endl;

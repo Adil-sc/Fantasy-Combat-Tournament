@@ -301,7 +301,7 @@ void Tournament::gameStart() {
         while (!isEmpty(player1) && !isEmpty(player2)) {
 
             if (player1->fighter->getStrength() <= 0) {
-                cout << "debug:1" << std::endl;
+                //cout << "debug:1" << std::endl;
                 cout << "Player 1: " << player1->fighter->getEnemyType() << " vs " << "Player 2: " << player2->fighter->getEnemyType() << " - " << player2->fighter->getEnemyType() << " Wins!"
                      << std::endl;
                 //If player 1 is defeated
@@ -314,14 +314,14 @@ void Tournament::gameStart() {
                 moveToBack(player2, player2Tail);
                 // cout<<isEmpty(player1)<<"***a";
             } else if (player1->fighter->getStrength() > 0 && !isEmpty(player2)) {
-                cout << "debug:2" << std::endl;
+                //cout << "debug:2" << std::endl;
                 player2->fighter->defence(player1->fighter->attack());
 
             }
 
 
             if (player2->fighter->getStrength() <= 0) {
-                cout << "debug:3" << std::endl;
+              //  cout << "debug:3" << std::endl;
                 cout << "Player 1: " << player1->fighter->getEnemyType() << " vs " << "Player 2: " << player2->fighter->getEnemyType() << " - " << player1->fighter->getEnemyType() << " Wins!"
                      << std::endl;
                 //If player 2 is defeated
@@ -334,7 +334,7 @@ void Tournament::gameStart() {
                 moveToBack(player1, player1Tail);
                 // cout<<isEmpty(player1)<<"***b";
             } else if (player2->fighter->getStrength() > 0 && !isEmpty(player1)) {
-                cout << "debug:4" << std::endl;
+              //  cout << "debug:4" << std::endl;
                 player1->fighter->defence(player2->fighter->attack());
 
             }

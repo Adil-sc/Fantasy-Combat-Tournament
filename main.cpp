@@ -11,7 +11,7 @@ int main() {
             while(!quit){
                 myTourney.menu(quit);
             }
-cout<<"asdasd";
+
 
     return 0;
 }

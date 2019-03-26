@@ -1,6 +1,9 @@
-//
-// Created by Sandybridge W10 on 2/19/2019.
-//
+/*********************************************************************
+** Program Name: Project 4
+** Author: Adil Chaudhry
+** Date: 3/1/2019
+** Description: Tournament.h defines the Tournament class
+*********************************************************************/
 
 #ifndef PROJECT4_TOURNAMENT_H
 #define PROJECT4_TOURNAMENT_H
@@ -26,16 +29,16 @@ using std::vector;
 class Tournament {
 private:
 
-    string characterType= "";
+    string characterType = "";
 
-    struct CharacterLinkedList{
+    struct CharacterLinkedList {
 
         CharacterLinkedList *next;
         CharacterLinkedList *prev;
         Character *fighter;
         int numberOfFighers;
 
-        CharacterLinkedList(Character *fighter,string characterName,CharacterLinkedList *prev, CharacterLinkedList *next,int numberOfFighters){
+        CharacterLinkedList(Character *fighter, string characterName, CharacterLinkedList *prev, CharacterLinkedList *next, int numberOfFighters) {
             this->fighter = fighter;
             this->next = next;
             this->prev = prev;
@@ -46,8 +49,7 @@ private:
 
     };
 
-  //  CharacterLinkedList *head;
- //   CharacterLinkedList *tail;
+
     CharacterLinkedList *player1Tail;
     CharacterLinkedList *player2Tail;
     CharacterLinkedList *loserTail;
@@ -57,41 +59,46 @@ private:
     CharacterLinkedList *losers;
 
 
-
 public:
 
-    Tournament(){
+    Tournament() {
 
         player1Tail = nullptr;
         player2Tail = nullptr;
-      loserTail = nullptr;
+        loserTail = nullptr;
         player1 = nullptr;
-       player2 = nullptr;
-     losers = nullptr;
-
+        player2 = nullptr;
+        losers = nullptr;
 
 
     }
+
     ~Tournament();
 
     bool isEmpty(CharacterLinkedList *head);
-    int getFront();
+
     void cleanUp();
+
     void menu(bool &quit);
-    void removeFront(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
-    void moveToBack(CharacterLinkedList *&userPlayer, CharacterLinkedList *&tail);
-    void moveToLosers(CharacterLinkedList *&userPlayer,CharacterLinkedList *playerToAddToLosers ,CharacterLinkedList *&tail);
+
+    void removeFront(CharacterLinkedList *&head, CharacterLinkedList *&tail);
+
+    void moveToBack(CharacterLinkedList *&head, CharacterLinkedList *&tail);
+
+    void moveToLosers(CharacterLinkedList *&head, CharacterLinkedList *playerToAddToLosers, CharacterLinkedList *&tail);
+
     void gameStart();
-    void addPlayers(CharacterLinkedList *&userPlayer,CharacterLinkedList *&tail);
+
+    void addPlayers(CharacterLinkedList *&head, CharacterLinkedList *&tail);
+
     Character *characterSelectionMenu();
+
     void printCharacters(CharacterLinkedList *head);
 
 
 
+
 };
-
-
-
 
 
 #endif //PROJECT4_TOURNAMENT_H

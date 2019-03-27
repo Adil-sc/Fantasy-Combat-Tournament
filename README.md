@@ -81,11 +81,11 @@ the Vampire’s charm trumps Medusa’s glare.
 ### Installation and Usage
 Compile the program with this command:
 ```
-make FinalProject
+make Project4
 ```
 Run with the following command:
 ```unix
-./FinalProject
+./Project4
 ```
 
 ## Built With

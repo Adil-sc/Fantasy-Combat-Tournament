@@ -17,7 +17,7 @@ The tournament finishes when one of the team does not have any more fighters to 
 #Characters
 Note: “1d12” means rolling one 12-sided die, and “2d6” means rolling 2 6-sided dice, etc.
 
-## Vampire
+### Vampire
 ```
 Attack: 1d12
 Defense: 1d6
@@ -27,7 +27,7 @@ Special Ability: Charm - Vampires can charm an opponent into not attacking.
 For a given attack there is a 50% chance that their opponent does not actually attack them.
 ```
 
-## Barbarian
+### Barbarian
 ```
 Attack: 2d6
 Defense: 2d6
@@ -36,7 +36,7 @@ Strength Points: 12
 Special Ability: None
 ```
 
-## Blue Men
+### Blue Men
 ```
 Attack: 2d10
 Defense: 3d6
@@ -47,7 +47,7 @@ For every 4 points of damage, they lose one defense die.
 For example, if they have a strength of 8, they would have 2d6 for defense.
 ```
 
-## Medusa
+### Medusa
 ```
 Attack: 2d6
 Defense: 1d6
@@ -58,7 +58,7 @@ instantly gets turned into stone and Medusa wins! If Medusa uses Glare on Harry 
 on his first life, then Harry Potter comes back to life.
 ```
 
-## Harry Potter
+### Harry Potter
 ```
 Attack: 2d6
 Defense: 2d6
@@ -69,7 +69,7 @@ he immediately recovers and his total strength becomes 20. If he were to die
 again, then he’s dead.
 ```
 
-## Notes
+### Notes
 ```
 If Medusa uses “glare” on Harry Potter on his first life, 
 then Harry Potter comes back to life after using “hogwarts”.
@@ -78,7 +78,7 @@ If the Vampire’s “charm” ability activates when Medusa uses “glare”,
 the Vampire’s charm trumps Medusa’s glare.
 ```
 
-## Installation and Usage
+### Installation and Usage
 Compile the program with this command:
 ```
 make FinalProject

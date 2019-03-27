@@ -1,6 +1,6 @@
 # Fantasy Combat Tournament
 
-This game is a one-user-two-player game, so one user should be able to play setup fighters for both teams. For simplicity, we will call the order of fighters in each team “lineup”, like a batting order in baseball or softball.
+This game is a one-user-two-player game, so one user should be able to play setup fighters for both teams. 
 
 The flow of gameplay is as follows:
 
@@ -13,6 +13,70 @@ If a fighter won, it may have taken damage, so the game should restore some perc
 The lineup order cannot be changed, meaning that the game cannot modify the order of the lineup except when putting winner at the back of lineup and loser at the top of the loser container.
 
 The tournament finishes when one of the team does not have any more fighters to fight. 
+
+#Characters
+Note: “1d12” means rolling one 12-sided die, and “2d6” means rolling 2 6-sided dice, etc.
+
+##Vampire
+```
+Attack: 1d12
+Defense: 1d6
+Armor: 1
+Strength Points: 18
+Special Ability: Charm - Vampires can charm an opponent into not attacking. 
+For a given attack there is a 50% chance that their opponent does not actually attack them.
+```
+
+##Barbarian
+```
+Attack: 2d6
+Defense: 2d6
+Armor: 0
+Strength Points: 12
+Special Ability: None
+```
+
+##Blue Men
+```
+Attack: 2d10
+Defense: 3d6
+Armor: 3
+Strength Points: 12
+Special Ability: Mob - Blue Men are actually a swarm of small individuals. 
+For every 4 points of damage, they lose one defense die. 
+For example, if they have a strength of 8, they would have 2d6 for defense.
+```
+
+##Medusa
+```
+Attack: 2d6
+Defense: 1d6
+Armor: 3
+Strength Points: 8
+Special Ability: Glare - If a Medusa rolls a 12 when attacking then the target 
+instantly gets turned into stone and Medusa wins! If Medusa uses Glare on Harry Potter 
+on his first life, then Harry Potter comes back to life.
+```
+
+##Harry Potter
+```
+Attack: 2d6
+Defense: 2d6
+Armor: 0
+Strength Points: 10/20
+Special Ability: Hogwarts - If Harry Potter's strength reaches 0 or below, 
+he immediately recovers and his total strength becomes 20. If he were to die 
+again, then he’s dead.
+```
+
+##Notes
+```
+If Medusa uses “glare” on Harry Potter on his first life, 
+then Harry Potter comes back to life after using “hogwarts”.
+
+If the Vampire’s “charm” ability activates when Medusa uses “glare”, 
+the Vampire’s charm trumps Medusa’s glare.
+```
 
 ## Installation and Usage
 Compile the program with this command:

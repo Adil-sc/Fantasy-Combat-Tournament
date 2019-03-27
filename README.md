@@ -14,7 +14,8 @@ The lineup order cannot be changed, meaning that the game cannot modify the orde
 
 The tournament finishes when one of the team does not have any more fighters to fight. 
 
-#Characters
+# Characters
+
 Note: “1d12” means rolling one 12-sided die, and “2d6” means rolling 2 6-sided dice, etc.
 
 ### Vampire
